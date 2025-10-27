@@ -1,0 +1,31 @@
+.footerPlayer {
+    display: flex;
+    align-items: center;
+    width: 100vw;
+    border: 1px solid black;
+}
+
+.songWrapper {
+    max-width: 1170px;
+    margin: auto;
+    padding: 10px;
+    width: 100%;
+    display: grid;
+    grid-template-columns: 60px auto 100px;
+    grid-template-areas: "image controls settings";
+
+    .songImage {
+        grid-area: image;
+        width: 90%;
+        aspect-ratio: 1/1;
+        background: green;
+    }
+
+    .songController {
+        grid-area: controls;
+    }
+
+    .songSettings {
+        grid-area: settings;
+    }
+}

@@ -3,12 +3,16 @@ import {
   RouterProvider,
   Link
 } from "react-router-dom";
-
-
+import {DOMRouter} from "./Router";
+import {useState} from "react";
+import Footer from './components/Footer/Footer';
+import type { TSong } from './utils/Song';
 
 export default function App() {
+    const [currentSong, setCurrentSong] = useState<TSong>({});
+
     return (<>
-        <RouterProvider router={router} />
-        <div>Hello world!</div>
+        <RouterProvider router={DOMRouter} />
+        <Footer currentSong={{}} />
     </>)
 }
