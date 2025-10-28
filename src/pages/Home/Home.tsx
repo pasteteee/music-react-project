@@ -1,6 +1,6 @@
 import styles from "./Home.module.sass";
-import router from "../../Router";
+import router from "../../utils/Router";
 
 export default function Home() {
-  return <title>{router.get("Home") ? "" : router.get("Home").title}</title>;
+  return <title>Name</title>;
 }
