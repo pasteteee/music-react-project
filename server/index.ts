@@ -1,6 +1,6 @@
 import express from 'express';
 import cors from 'cors';
-import play from 'play-dl';
+import play, { spotify } from 'play-dl';
 
 const app = express();
 const PORT = Number(process.env.PORT || 5174);
@@ -22,16 +22,16 @@ app.get('/api/search', async (req, res) => {
       return;
     }
 
-    const results = await play.search(query, { limit });
+    const results = await play.search(query, { limit, source: {
+      deezer: "track"
+    } });
     res.json({ query, results });
   } catch (error) {
-    // Only expose safe error message
     res.status(500).json({ error: 'Search failed' });
   }
 });
 
 app.listen(PORT, () => {
-  // eslint-disable-next-line no-console
   console.log(`[server] listening on http://localhost:${PORT}`);
 });
 
