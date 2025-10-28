@@ -1,5 +1,10 @@
+import { useState } from "react";
 import styles from "./Sidebar.module.scss";
 import logo from "./logo.svg";
+
+interface TSidebar {
+  data: Object[];
+}
 
 export default function Sidebar() {
   return (
@@ -12,7 +17,7 @@ export default function Sidebar() {
       <ul className={styles.block}>
         <li data-type="description">Home</li>
         <li data-state="active">Home</li>
-        <li>Serch</li>
+        <li>Search</li>
         <li>Likes</li>
         <li>Playlists</li>
         <li>Albums</li>
