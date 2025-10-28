@@ -1,5 +1,6 @@
-import styles from "./Home.module.sass"
+import styles from "./Home.module.sass";
+import router from "../../utils/Router";
 
 export default function Home() {
-    return (<></>)
+  return <title>Name</title>;
 }

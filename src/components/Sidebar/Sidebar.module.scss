@@ -1,0 +1,67 @@
+$background: #f9f9f9;
+$text: #99938f;
+$active: #FF7E3A;
+
+.sidebar {
+    position: relative;
+  width: 100%;
+  height: 100%;
+  background-color: $background;
+  color: $text;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  padding: 30px 0;
+
+  .logo {
+    display: flex;
+    gap: 5px;
+    align-items: center;
+    color: black;
+    padding: 30px;
+  }
+
+  ul {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    padding: 30px 0 30px 30px;
+
+    li {
+      list-style: none;
+      font-size: 16px;
+      cursor: pointer;
+      padding: 5px 0;
+
+      &[data-type="description"] {
+        font-weight: bold;
+      }
+
+      &[data-state="active"] {
+        color: $active;
+        font-weight: bold;
+        border-right: 4px solid $active;
+      }
+
+      a {
+        text-decoration: none;
+      }
+    }
+  }
+}
+
+.sizeLine {
+    position: absolute;
+    top: 0;
+    right: 0;
+    height: 100%;
+    width: 2px;
+    background-color: transparent;
+    transition: background-color .4s ease;
+    cursor: e-resize;
+
+    &:hover {
+        background-color: rgba(0, 0, 0, 0.651);
+    }
+}
