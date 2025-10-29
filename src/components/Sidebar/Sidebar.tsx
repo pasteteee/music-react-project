@@ -1,12 +1,13 @@
 import { useState } from "react";
 import styles from "./Sidebar.module.scss";
 import logo from "./logo.svg";
+import type {
+  TSidebar,
+  TSidebarItems,
+  TSidebarData,
+} from "../../utils/Sidebar";
 
-interface TSidebar {
-  data: Object[];
-}
-
-export default function Sidebar() {
+export default function Sidebar(props: TSidebar) {
   return (
     <div className={styles.sidebar}>
       <div className={styles.logo}>
@@ -14,22 +15,18 @@ export default function Sidebar() {
         <h1>TuneTrek</h1>
       </div>
 
-      <ul className={styles.block}>
-        <li data-type="description">Home</li>
-        <li data-state="active">Home</li>
-        <li>Search</li>
-        <li>Likes</li>
-        <li>Playlists</li>
-        <li>Albums</li>
-      </ul>
-
-      <ul className={styles.block}>
-        <li>Home</li>
-        <li>Serch</li>
-        <li>Likes</li>
-        <li>Playlists</li>
-        <li>Albums</li>
-      </ul>
+      {props.data.map((el: TSidebarData) => {
+        return (
+          <ul>
+            <li data-type="description">{el.name}</li>
+            {el.links.map((link: TSidebarItems) => (
+              <li>
+                <a href={link.link}>{link.title}</a>
+              </li>
+            ))}
+          </ul>
+        );
+      })}
     </div>
   );
 }

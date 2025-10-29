@@ -6,6 +6,7 @@ import Footer from "./components/Footer/Footer";
 import type { TSong } from "./utils/Song";
 import styles from "./App.module.scss";
 import Sidebar from "./components/Sidebar/Sidebar";
+import sidebarData from "./utils/Sidebar";
 
 export default function App() {
   const [currentSong, setCurrentSong] = useState<TSong>({});
@@ -13,7 +14,7 @@ export default function App() {
   return (
     <div className={styles.wrapper}>
       <nav>
-        <Sidebar />
+        <Sidebar data={sidebarData} />
       </nav>
       <main>
         <RouterProvider router={DOMRouter} />

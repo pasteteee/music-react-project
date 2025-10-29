@@ -46,22 +46,8 @@ $active: #FF7E3A;
 
       a {
         text-decoration: none;
+        color: $text;
       }
     }
   }
-}
-
-.sizeLine {
-    position: absolute;
-    top: 0;
-    right: 0;
-    height: 100%;
-    width: 2px;
-    background-color: transparent;
-    transition: background-color .4s ease;
-    cursor: e-resize;
-
-    &:hover {
-        background-color: rgba(0, 0, 0, 0.651);
-    }
 }
