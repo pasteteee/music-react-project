@@ -1,6 +1,6 @@
-import { useState } from "react";
 import styles from "./Sidebar.module.scss";
 import logo from "./logo.svg";
+import { ReactSVG } from "react-svg";
 import type {
   TSidebar,
   TSidebarItems,
@@ -21,7 +21,10 @@ export default function Sidebar(props: TSidebar) {
             <li data-type="description">{el.name}</li>
             {el.links.map((link: TSidebarItems) => (
               <li>
-                <a href={link.link}>{link.title}</a>
+                <a href={link.link} data-new={link.isNew}>
+                  <ReactSVG src={link.image} />
+                  {link.title}
+                </a>
               </li>
             ))}
           </ul>

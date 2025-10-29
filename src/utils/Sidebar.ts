@@ -2,6 +2,7 @@ export interface TSidebarItems {
   title: string;
   link: string;
   image: string;
+  isNew?: boolean;
 }
 
 export interface TSidebarData {
@@ -15,32 +16,58 @@ export interface TSidebar {
 
 const sidebarData: TSidebarData[] = [
     {
-        name: 'Home',
+        name: 'HOME',
         links: [
             {
                 title: "Home",
                 link: "",
-                image: ""
+                image: "/img-sidebar/home.svg"
             },
             {
-                title: "Home",
+                title: "Search",
                 link: "",
-                image: ""
+                image: "/img-sidebar/search.svg"
             },
             {
-                title: "Home",
+                title: "Likes",
                 link: "",
-                image: ""
+                image: "/img-sidebar/like.svg"
             },
             {
-                title: "Home",
+                title: "Playlists",
                 link: "",
-                image: ""
+                image: "/img-sidebar/playlist.svg"
             },
             {
-                title: "Home",
+                title: "Albums",
                 link: "",
-                image: ""
+                image: "/img-sidebar/albums.svg"
+            },
+            {
+                title: "Following",
+                link: "",
+                image: "/img-sidebar/following.svg"
+            },
+        ]
+    },
+    {
+        name: 'GENERAL',
+        links: [
+            {
+                title: "Settings",
+                link: "",
+                image: "/img-sidebar/settings.svg"
+            },
+            {
+                title: "Subscription",
+                link: "",
+                image: "/img-sidebar/subscription.svg",
+                isNew: true
+            },
+            {
+                title: "Log out",
+                link: "",
+                image: "/img-sidebar/logout.svg"
             },
         ]
     }
