@@ -1,27 +1,33 @@
 import Home from "./pages/Home/Home";
-import { RouterProvider, Link, BrowserRouter } from "react-router-dom";
-import { DOMRouter } from "./utils/Router";
+import { BrowserRouter, Routes, Route } from "react-router-dom";
+import router from "./utils/Router";
 import { useEffect, useState } from "react";
 import Footer from "./components/Footer/Footer";
 import type { TSong } from "./utils/Song";
 import styles from "./App.module.scss";
 import Sidebar from "./components/Sidebar/Sidebar";
 import sidebarData from "./utils/Sidebar";
+import SearchPage from "./pages/Search/Search";
 
 export default function App() {
   const [currentSong, setCurrentSong] = useState<TSong>({});
 
   return (
-    <div className={styles.wrapper}>
-      <nav>
-        <Sidebar data={sidebarData} />
-      </nav>
-      <main>
-        <RouterProvider router={DOMRouter} />
-      </main>
-      <footer>
-        <Footer currentSong={{}} />
-      </footer>
-    </div>
+    <BrowserRouter>
+      <div className={styles.wrapper}>
+        <nav>
+          <Sidebar data={sidebarData} />
+        </nav>
+        <main>
+          <Routes>
+            <Route path="/" element={<Home />} />
+            <Route path="/search" element={<SearchPage />} />
+          </Routes>
+        </main>
+        <footer>
+          <Footer currentSong={{}} />
+        </footer>
+      </div>
+    </BrowserRouter>
   );
 }

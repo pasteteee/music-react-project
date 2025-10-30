@@ -6,8 +6,11 @@ import type {
   TSidebarItems,
   TSidebarData,
 } from "../../utils/Sidebar";
+import { Link, useLocation } from "react-router-dom";
 
 export default function Sidebar(props: TSidebar) {
+  const locate = useLocation();
+
   return (
     <div className={styles.sidebar}>
       <div className={styles.logo}>
@@ -22,12 +25,12 @@ export default function Sidebar(props: TSidebar) {
             {el.links.map((link: TSidebarItems, ind2: number) => (
               <li
                 key={`li${link.link}${ind2}`}
-                data-active={window.location.pathname == link.link}
+                data-active={locate.pathname == link.link}
               >
-                <a href={link.link} data-new={link.isNew}>
+                <Link to={link.link} data-new={link.isNew}>
                   <ReactSVG src={link.image} />
                   {link.title}
-                </a>
+                </Link>
               </li>
             ))}
           </ul>
