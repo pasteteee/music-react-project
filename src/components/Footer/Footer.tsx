@@ -1,6 +1,6 @@
 import styles from "./Footer.module.scss";
-import type { TSong } from "../../utils/Song";
-import Player from "../../utils/Song";
+import type { TSong } from "../../utils/Player";
+import Player from "../../utils/Player";
 import { useEffect } from "react";
 
 interface TFooter {

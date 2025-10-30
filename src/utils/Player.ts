@@ -1,4 +1,6 @@
-export interface TSong {}
+export interface TSong {
+  
+}
 
 export default class Player {
   queue: null | TSong;

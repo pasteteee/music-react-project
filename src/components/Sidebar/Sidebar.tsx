@@ -1,12 +1,12 @@
 import styles from "./Sidebar.module.scss";
 import logo from "./logo.svg";
 import { ReactSVG } from "react-svg";
-import type {
-  TSidebar,
-  TSidebarItems,
-  TSidebarData,
-} from "../../utils/Sidebar";
+import type { TSidebarItems, TSidebarData } from "../../utils/Sidebar";
 import { Link, useLocation } from "react-router-dom";
+
+interface TSidebar {
+  data: TSidebarData[];
+}
 
 export default function Sidebar(props: TSidebar) {
   const locate = useLocation();

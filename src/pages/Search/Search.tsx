@@ -1,6 +1,9 @@
-import styles from "./Search.module.scss";
-import { Link } from "react-router-dom";
+import SearchInput from "../../components/SearchInput/SearchInput";
 
 export default function SearchPage() {
-  return <Link to="/">Home</Link>;
+  return (
+    <>
+      <SearchInput />
+    </>
+  );
 }

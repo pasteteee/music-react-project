@@ -12,10 +12,6 @@ export interface TSidebarData {
   links: TSidebarItems[];
 }
 
-export interface TSidebar {
-  data: TSidebarData[];
-}
-
 function getTitleAndLink(name: string) {
     return {title: router.get(name)?.title ?? "",
             link: router.get(name)?.url ?? ""}
