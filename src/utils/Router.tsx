@@ -1,6 +1,6 @@
 import { createBrowserRouter } from "react-router-dom";
 import Home from "../pages/Home/Home";
-import type { ReactNode } from "react";
+import SearchPage from "../pages/Search/Search";
 
 interface TPath {
   title: string;
@@ -12,6 +12,7 @@ const router: Map<string, TPath> = new Map();
 
 // Pages
 router.set("Home", { title: "", url: "/", el: <Home /> });
+router.set("Search", { title: "Search", url: "/search", el: <SearchPage /> });
 
 export const DOMRouter = createBrowserRouter(
   Array.from(router.values()).map((el) => ({

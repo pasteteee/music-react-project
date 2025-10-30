@@ -20,12 +20,12 @@ const sidebarData: TSidebarData[] = [
         links: [
             {
                 title: "Home",
-                link: "",
+                link: "/",
                 image: "/img-sidebar/home.svg"
             },
             {
                 title: "Search",
-                link: "",
+                link: "/search",
                 image: "/img-sidebar/search.svg"
             },
             {
@@ -69,6 +69,7 @@ const sidebarData: TSidebarData[] = [
                 link: "",
                 image: "/img-sidebar/logout.svg"
             },
+
         ]
     }
 ]

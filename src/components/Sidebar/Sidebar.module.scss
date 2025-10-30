@@ -7,7 +7,8 @@ $active: #FF7E3A;
   width: 100%;
   background-color: $background;
   color: $text;
-  overflow: hidden;
+  height: 100%;
+  overflow-x: auto;
 
   display: flex;
   flex-direction: column;
@@ -39,10 +40,17 @@ $active: #FF7E3A;
         font-weight: bold;
       }
 
-      &[data-state="active"] {
-        color: $active;
+      &[data-active="true"] {
         font-weight: bold;
         border-right: 4px solid $active;
+
+        a {
+          color: $active;
+
+          svg path {
+            stroke: $active;
+          }
+        }
       }
 
       a {
@@ -74,6 +82,7 @@ $active: #FF7E3A;
         &:hover svg path {
           stroke: $active;
         }
+
       }
     }
   }

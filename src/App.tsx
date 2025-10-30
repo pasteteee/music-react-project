@@ -1,5 +1,5 @@
 import Home from "./pages/Home/Home";
-import { RouterProvider, Link } from "react-router-dom";
+import { RouterProvider, Link, BrowserRouter } from "react-router-dom";
 import { DOMRouter } from "./utils/Router";
 import { useEffect, useState } from "react";
 import Footer from "./components/Footer/Footer";
