@@ -1,3 +1,5 @@
+import router from "./Router";
+
 export interface TSidebarItems {
   title: string;
   link: string;
@@ -14,18 +16,21 @@ export interface TSidebar {
   data: TSidebarData[];
 }
 
+function getTitleAndLink(name: string) {
+    return {title: router.get(name)?.title ?? "",
+            link: router.get(name)?.url ?? ""}
+};
+
 const sidebarData: TSidebarData[] = [
     {
         name: 'HOME',
         links: [
             {
-                title: "Home",
-                link: "/",
+                ...getTitleAndLink("Home"),
                 image: "/img-sidebar/home.svg"
             },
             {
-                title: "Search",
-                link: "/search",
+                ...getTitleAndLink("Search"),
                 image: "/img-sidebar/search.svg"
             },
             {

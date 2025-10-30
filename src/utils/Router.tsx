@@ -11,7 +11,7 @@ interface TPath {
 const router: Map<string, TPath> = new Map();
 
 // Pages
-router.set("Home", { title: "", url: "/", el: <Home /> });
+router.set("Home", { title: "Home", url: "/", el: <Home /> });
 router.set("Search", { title: "Search", url: "/search", el: <SearchPage /> });
 
 export const DOMRouter = createBrowserRouter(

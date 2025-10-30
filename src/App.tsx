@@ -1,7 +1,6 @@
 import Home from "./pages/Home/Home";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
-import router from "./utils/Router";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import Footer from "./components/Footer/Footer";
 import type { TSong } from "./utils/Song";
 import styles from "./App.module.scss";
