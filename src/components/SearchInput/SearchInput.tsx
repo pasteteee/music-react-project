@@ -15,16 +15,23 @@ export default function SearchInput() {
     counterRef.current += 1;
     const currentCounter = counterRef.current;
 
-    setTimeout(() => {
+    setTimeout(async () => {
       if (currentCounter !== counterRef.current) return;
 
-      player?.findTrack("Бонд с кнопкой");
+      const songs = await player?.findTrack(value, 5);
+      if (songs != undefined) setHelps((...prev) => [...songs]);
+      else setHelps(undefined);
     }, 1000);
   };
 
   return (
     <div className={styles.wrapper}>
       <input type="text" onChange={(e) => updateValue(e.target.value)} />
+      {helps && helps.length > 0
+        ? helps.map((el, ind) => {
+            return <div key={`helps${ind}`}>{`${el.title}`}</div>;
+          })
+        : ""}
     </div>
   );
 }

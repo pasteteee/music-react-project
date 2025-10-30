@@ -1,5 +1,6 @@
 export interface TSong {
-  
+  title: string;
+  url: string;
 }
 
 export default class Player {
@@ -19,16 +20,30 @@ export default class Player {
     else localStorage.removeItem("source");
   }
 
-  async findTrack(query: string) {
+  async findTrack(query: string, count: number) {
     const res = await fetch(
-      `/api/search?q=${encodeURIComponent(query)}&limit=5&source=${"spotify"}`
+      `/api/search?q=${encodeURIComponent(query)}&limit=${count}&source=${"spotify"}`
     );
 
     if (!res.ok)
-      return {error: "Not found"}
+      return undefined
     
     const data = await res.json();
-    console.log(data);
-    return data?.results ?? [];
+
+    console.log(data)
+    return this.getTypedArray(data?.results ?? []);
+  }
+
+  getTypedArray(data: Object[]): TSong[] {
+    let result: TSong[] = [];
+    
+    for (let item of data) {
+      result.push({
+        title: String(item.title),
+        url: String(item.previewURL),
+      });
+    }
+
+    return result;
   }
 }
