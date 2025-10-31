@@ -1,0 +1,26 @@
+$text: #99938f;
+$link: #000000;
+
+.pathIndetefier {
+    display: flex;
+    flex-direction: row;
+    margin: 85px 0 0 50px;
+}
+
+.pathIndetefierItem {
+    color: $text;
+    font-size: 30px;
+    padding-right: 10px;
+}
+
+.pathIndetefierLink {
+    color: $link;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+.breadcrumbSeparator {
+    padding-left: 10px;
+    color: $link;
+    font-weight: bold;
+}

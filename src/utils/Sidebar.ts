@@ -1,24 +1,26 @@
 import router from "./Router";
 
 export interface TSidebarItems {
-  title: string;
-  link: string;
-  image: string;
-  isNew?: boolean;
+    title: string;
+    link: string;
+    image: string;
+    isNew?: boolean;
 }
 
 export interface TSidebarData {
-  name: string;
-  links: TSidebarItems[];
+    name: string;
+    links: TSidebarItems[];
 }
 
 export interface TSidebar {
-  data: TSidebarData[];
+    data: TSidebarData[];
 }
 
 function getTitleAndLink(name: string) {
-    return {title: router.get(name)?.title ?? "",
-            link: router.get(name)?.url ?? ""}
+    return {
+        title: router.get(name)?.title ?? "",
+        link: router.get(name)?.url ?? ""
+    }
 };
 
 const sidebarData: TSidebarData[] = [
