@@ -1,11 +1,15 @@
 export interface TSong {
   title: string;
   url: string;
+  artistName: string,
 }
 
 interface ResultItem {
   title: string;
   previewURL: string;
+  artist: {
+    name: string;
+  }
 }
 
 export default class Player {
@@ -44,9 +48,11 @@ export default class Player {
     let result: TSong[] = [];
     
     for (let item of data) {
+      console.log(item)
       result.push({
         title: String(item.title),
         url: String(item.previewURL),
+        artistName: String(item.artist.name),
       });
     }
 

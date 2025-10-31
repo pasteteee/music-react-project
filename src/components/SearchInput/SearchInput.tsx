@@ -22,12 +22,25 @@ export default function SearchInput() {
   return (
     <div className={styles.wrapper}>
       <input type="text" onChange={(e) => updateValue(e.target.value)} />
-      {helps && helps.length > 0
-        ? helps.map((el, ind) => {
-            return <div key={`helps${ind}`}>{`${el.title}`}</div>;
-          })
-        : ""}
-      {isPending && <Loader />}
+      {isPending && (
+        <div className={styles.content}>
+          <Loader />
+        </div>
+      )}
+      {helps && helps.length > 0 ? (
+        <div className={styles.content}>
+          {helps.map((el, ind) => {
+            return (
+              <div
+                style={{ display: "block", width: "100%" }}
+                key={`helps${ind}`}
+              >{`${el.title} - ${el.artistName}`}</div>
+            );
+          })}
+        </div>
+      ) : (
+        ""
+      )}
     </div>
   );
 }
