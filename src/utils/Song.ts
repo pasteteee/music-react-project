@@ -1,4 +1,4 @@
-export interface TSong {}
+export interface TSong { }
 
 export default class Player {
   queue: null | TSong;
@@ -23,10 +23,11 @@ export default class Player {
     );
 
     if (!res.ok)
-      return {error: "Not found"}
-    
+      return { error: "Not found" }
+
     const data = await res.json();
     console.log(data);
     return data?.results ?? [];
   }
 }
+
