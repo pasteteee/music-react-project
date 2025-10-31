@@ -3,6 +3,7 @@ import { useContext, useState } from "react";
 import type { TSong } from "../../utils/Player";
 import PlayerContext from "../../context/PlayerContext";
 import useResolveAfterDelay from "../../hook/useResolveAfterDelay";
+import Loader from "../Loader/Loader";
 
 export default function SearchInput() {
   const player = useContext(PlayerContext);
@@ -10,6 +11,7 @@ export default function SearchInput() {
   const [helps, setHelps] = useState<TSong[] | undefined>(undefined);
   const [updateValue, isPending] = useResolveAfterDelay(
     async (value: string) => {
+      console.log(player);
       const songs = await player?.findTrack(value, 5);
       if (songs != undefined) setHelps(() => [...songs]);
       else setHelps(undefined);
@@ -25,7 +27,7 @@ export default function SearchInput() {
             return <div key={`helps${ind}`}>{`${el.title}`}</div>;
           })
         : ""}
-      {isPending && <h5>Loading...</h5>}
+      {isPending && <Loader />}
     </div>
   );
 }

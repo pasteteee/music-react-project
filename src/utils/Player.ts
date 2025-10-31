@@ -3,6 +3,11 @@ export interface TSong {
   url: string;
 }
 
+interface ResultItem {
+  title: string;
+  previewURL: string;
+}
+
 export default class Player {
   queue: null | TSong;
   _source: string | null;
@@ -21,6 +26,7 @@ export default class Player {
   }
 
   async findTrack(query: string, count: number) {
+    console.log(`/api/search?q=${encodeURIComponent(query)}&limit=${count}&source=${"spotify"}`)
     const res = await fetch(
       `/api/search?q=${encodeURIComponent(query)}&limit=${count}&source=${"spotify"}`
     );
@@ -34,7 +40,7 @@ export default class Player {
     return this.getTypedArray(data?.results ?? []);
   }
 
-  getTypedArray(data: Object[]): TSong[] {
+  getTypedArray(data: ResultItem[]): TSong[] {
     let result: TSong[] = [];
     
     for (let item of data) {
