@@ -1,9 +1,6 @@
-import styles from "./Home.module.sass";
-import router from "../../utils/Router";
-import { Link } from "react-router-dom";
 import { PathIndetefier } from "../../components/PathIndetefier/PathIndetefier";
 import { usePathIndetefier } from "../../utils/PathIndetefier";
-import { GenreChart } from "../../components/GenreChart/GenreChart";
+import Slider from "../../components/Slider/Slider";
 import { genresStruct } from "../../utils/GenreChart";
 
 export default function Home() {
@@ -12,7 +9,7 @@ export default function Home() {
   return (
     <div>
       <PathIndetefier items={pathIndetefier} />
-      <GenreChart charts={genresStruct} />
+      <Slider charts={genresStruct} title="Charts: Top 50" />
     </div>
   );
 }
