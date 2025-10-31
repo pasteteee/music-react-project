@@ -1,28 +1,21 @@
 import styles from "./SearchInput.module.scss";
-import { useContext, useEffect, useRef, useState } from "react";
+import { useContext, useState } from "react";
 import type { TSong } from "../../utils/Player";
-import PlayerContext from "../../Context/PlayerContext";
+import PlayerContext from "../../context/PlayerContext";
+import useResolveAfterDelay from "../../hook/useResolveAfterDelay";
 
 export default function SearchInput() {
   const player = useContext(PlayerContext);
 
-  const [searchValue, setSearchValue] = useState<string>("");
-  const counterRef = useRef(0);
   const [helps, setHelps] = useState<TSong[] | undefined>(undefined);
-
-  const updateValue = (value: string) => {
-    setSearchValue(value);
-    counterRef.current += 1;
-    const currentCounter = counterRef.current;
-
-    setTimeout(async () => {
-      if (currentCounter !== counterRef.current) return;
-
+  const [updateValue, isPending] = useResolveAfterDelay(
+    async (value: string) => {
       const songs = await player?.findTrack(value, 5);
-      if (songs != undefined) setHelps((...prev) => [...songs]);
+      if (songs != undefined) setHelps(() => [...songs]);
       else setHelps(undefined);
-    }, 1000);
-  };
+    },
+    1000
+  );
 
   return (
     <div className={styles.wrapper}>
@@ -32,6 +25,7 @@ export default function SearchInput() {
             return <div key={`helps${ind}`}>{`${el.title}`}</div>;
           })
         : ""}
+      {isPending && <h5>Loading...</h5>}
     </div>
   );
 }

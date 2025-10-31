@@ -4,7 +4,7 @@ import styles from "./App.module.scss";
 import Sidebar from "./components/Sidebar/Sidebar";
 import sidebarData from "./utils/Sidebar";
 import Player from "./utils/Player";
-import PlayerContext from "./Context/PlayerContext";
+import PlayerContext from "./context/PlayerContext";
 import router from "./utils/Router";
 
 export default function App() {
