@@ -3,7 +3,7 @@ import { useLocation } from "react-router-dom";
 export interface PathItem {
     label: string;
     path?: string;
-    isActive?: boolean;
+    isActive?: boolean
 }
 
 export const usePathIndetefier = () => {
@@ -15,20 +15,22 @@ export const usePathIndetefier = () => {
         if (path === '') return 'Discover';
         if (path === 'search') return 'Search';
 
-        return path.split('-').map(word => word.charAt(0).toUpperCase + word.slice(1)).join(' ');
+        return (
+            path.split('-').map(word => word.charAt(0).toUpperCase + word.slice(1)).join(' ')
+        )
     }
 
     const currentPageName = getPageName(location.pathname);
 
     let pathIndetefier: PathItem[] = [
         { label: 'Discover', path: '/' }
-    ];
+    ]
 
     if (currentPageName !== 'Discover') {
         pathIndetefier = [
             { label: 'Discover', path: '/' },
             { label: currentPageName, isActive: true }
-        ];
+        ]
     }
 
     return pathIndetefier;

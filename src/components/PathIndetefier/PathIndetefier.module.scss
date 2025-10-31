@@ -4,7 +4,7 @@ $link: #000000;
 .pathIndetefier {
     display: flex;
     flex-direction: row;
-    margin: 85px 0 0 50px;
+    margin: 85px 0 70px 50px;
 }
 
 .pathIndetefierItem {
@@ -16,6 +16,12 @@ $link: #000000;
 .pathIndetefierLink {
     color: $link;
     text-decoration: none;
+    font-weight: bold;
+}
+
+.pathIndetefierLink:hover {
+    color: $link;
+    text-decoration: underline;
     font-weight: bold;
 }
 
