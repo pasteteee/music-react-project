@@ -1,0 +1,84 @@
+$text: #99938f;
+$link: #000000;
+$border: rgb(255, 233, 192);
+
+.genreChart {
+    background-color: white;
+    padding: 40px 25px 20px 25px;
+    margin: 0 50px 0 50px;
+    border-radius: 30px;
+    overflow: auto;
+}
+
+.title {
+    font-size: 22px;
+    font-weight: 500;
+    margin-bottom: 25px;
+}
+
+.cardsRow {
+    display: flex;
+    flex-direction: row;
+    gap: 30px;
+    overflow-x: auto;
+    user-select: none;
+
+    &::-webkit-scrollbar {
+        display: none;
+    }
+}
+
+.card {
+    border: 1px solid $border;
+    border-radius: 15px;
+    flex-shrink: 0;
+    width: 170px;
+    transition: transform 0.5s ease;
+
+    &:hover {
+        transform: translateY(-2px);
+    }
+}
+
+.chartImage {
+    width: 140px;
+    height: 140px;
+    border-radius: 12px;
+    margin: 15px 15px 5px 15px;
+    object-fit: cover;
+}
+
+.genreTitle {
+    margin-left: 15px;
+    color: $link;
+    font-weight: 500;
+    text-decoration: none;
+}
+
+.catTitle {
+    margin: 5px 0 10px 15px;
+    font-size: 15px;
+    color: $text;
+}
+
+.link {
+    text-decoration: none;
+}
+
+.header {
+    display: flex;
+    justify-content: space-between;
+}
+
+.navButtons {
+    margin-right: 50px;
+}
+
+.navButton {
+    background: white;
+    border: none;
+    width: 40px;
+    height: 40px;
+    cursor: pointer;
+    font-size: 25px;
+}
