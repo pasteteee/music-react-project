@@ -22,6 +22,7 @@ $border: rgb(255, 233, 192);
     gap: 30px;
     overflow-x: auto;
     user-select: none;
+    cursor: grab;
 
     &::-webkit-scrollbar {
         display: none;
