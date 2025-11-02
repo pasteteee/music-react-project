@@ -1,0 +1,111 @@
+$text: #99938f;
+$link: #000000;
+$border: rgb(255, 233, 192);
+
+.listeningHistory {
+    background-color: #ffffff;
+    padding: 40px 40px 20px 25px;
+    margin: 0 50px 0 50px;
+    border-radius: 30px;
+    max-height: 350px;
+    overflow: hidden;
+    user-select: none;
+    z-index: 0;
+}
+
+.header {
+    display: flex;
+    justify-content: space-between;
+}
+
+.title {
+    font-size: 22px;
+    font-weight: 500;
+    margin-bottom: 25px;
+}
+
+.seeAll {
+    color: $text;
+    text-decoration: none;
+
+    &:hover {
+        color: $link;
+    }
+}
+
+.link {
+    text-decoration: none;
+}
+
+.card {
+    display: flex;
+    background-color: #fcfcfc;
+    width: 100%;
+    transition: transform 0.5s ease;
+
+    &:hover {
+        transform: translateY(-2px);
+    }
+}
+
+.tracksContainer {
+    overflow-y: auto;
+    scroll-behavior: smooth;
+    max-height: 220px;
+    scrollbar-width: thin;
+}
+
+.tracks {
+    display: flex;
+    flex-direction: column;
+    user-select: none;
+    gap: 12px;
+}
+
+.trackImage {
+    width: 100px;
+    height: 100px;
+    border-radius: 20px;
+    margin: 10px;
+    object-fit: cover;
+}
+
+.name {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    margin-left: 15px;
+}
+
+.trackTitle {
+    font-size: 20px;
+    color: $link;
+}
+
+.artist {
+    font-size: 15px;
+    color: $text;
+}
+
+.info {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 30px;
+    margin-left: 900px;
+}
+
+.infoItem {
+    padding: 5px;
+    border: 1px solid $border;
+    color: $text;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 12px;
+    gap: 10px;
+}
+
+.auditions {
+    width: 80px;
+}
