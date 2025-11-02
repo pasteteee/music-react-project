@@ -1,22 +1,13 @@
 import styles from "./Footer.module.scss";
-import type { TSong } from "../../utils/Player";
-import Player from "../../utils/Player";
-import { useEffect } from "react";
+import { usePlayer } from "../../hook/usePlayer";
 
-interface TFooter {
-  currentSong: TSong;
-}
-
-export default function Footer(props: TFooter) {
-  useEffect(() => {
-    let song: Player = new Player();
-    song.findTrack("99 problems");
-  }, []);
+export default function Footer() {
+  const { player } = usePlayer();
 
   return (
-    <div className={styles.footerPlayer}>
+    <div className={styles.footerPlayer} data-closed={!player?.queue?.current}>
       <div className={styles.songWrapper}>
-        <div className={styles.songImage}></div>
+        <div className={styles.songImage}>{player?.queue?.current?.title}</div>
         <div className={styles.songController}></div>
         <div className={styles.songSettings}></div>
       </div>

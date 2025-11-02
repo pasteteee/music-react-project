@@ -6,11 +6,18 @@ import sidebarData from "./utils/Sidebar";
 import Player from "./utils/Player";
 import PlayerContext from "./context/PlayerContext";
 import router from "./utils/Router";
+import { useEffect, useState } from "react";
 
 export default function App() {
+  const [player, setPlayer] = useState<Player>(new Player());
+
+  useEffect(() => {
+    player.setStateFunction = setPlayer;
+  }, []);
+
   return (
     <BrowserRouter>
-      <PlayerContext.Provider value={new Player()}>
+      <PlayerContext.Provider value={{ player, setPlayer }}>
         <div className={styles.wrapper}>
           <nav>
             <Sidebar data={sidebarData} />
@@ -29,7 +36,7 @@ export default function App() {
             </Routes>
           </main>
           <footer>
-            <Footer currentSong={{}} />
+            <Footer />
           </footer>
         </div>
       </PlayerContext.Provider>

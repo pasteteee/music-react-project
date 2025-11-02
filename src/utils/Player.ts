@@ -12,13 +12,24 @@ interface ResultItem {
   }
 }
 
+interface TQueueEl {
+  current: TSong,
+  next: TQueueEl | null;
+}
+
 export default class Player {
-  queue: null | TSong;
+  queue: TQueueEl | null;
   _source: string | null;
+  #setState: React.SetStateAction<Player> | undefined;
 
   constructor() {
     this.queue = null;
+    this.#setState = undefined;
     this._source = localStorage.getItem("source");
+  }
+
+  set setStateFunction(fn: React.Dispatch<React.SetStateAction<Player>>) {
+    this.#setState = fn;
   }
 
   set source(value: string | null) {
@@ -30,17 +41,14 @@ export default class Player {
   }
 
   async findTrack(query: string, count: number) {
-    console.log(`/api/search?q=${encodeURIComponent(query)}&limit=${count}&source=${"spotify"}`)
     const res = await fetch(
       `/api/search?q=${encodeURIComponent(query)}&limit=${count}&source=${"spotify"}`
     );
 
     if (!res.ok)
-      return undefined
+      return undefined;
     
     const data = await res.json();
-
-    console.log(data)
     return this.getTypedArray(data?.results ?? []);
   }
 
@@ -57,5 +65,22 @@ export default class Player {
     }
 
     return result;
+  }
+
+  addTrackToQueue(songData: TSong) {
+    if (this.#setState === undefined)
+      return;
+
+    if (this.queue == null) {
+    this.#setState((prevState) => ({
+      ...prevState,
+      queue: [songData] // Создаем новую очередь с текущим треком
+    }));
+  } else {
+    this.#setState((prevState) => ({
+      ...prevState,
+      queue: [...prevState.queue, songData] // Добавляем трек в существующую очередь
+    }));
+  }
   }
 }
