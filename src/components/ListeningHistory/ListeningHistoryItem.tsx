@@ -10,18 +10,17 @@ export default function ListeningHistoryItem({ track }: TTrackItem) {
 
   return (
     <div key={track.id} className={styles.card}>
-      <img src={track.imageUrl} alt={track.title} className={styles.trackImage} />
-      <div className={styles.name}>
-        <div className={styles.trackTitle}>{track.title}</div>
-        <p className={styles.artist}>{track.artist}</p>
+      <div className={styles.nameContainer}>
+        <img src={track.imageUrl} alt={track.title} className={styles.trackImage} />
+        <div className={styles.name}>
+          <div className={styles.trackTitle}>{track.title}</div>
+          <p className={styles.artist}>{track.artist}</p>
+        </div>
       </div>
       <div className={styles.info}>
         <div className={`${styles.infoItem} ${styles.auditions}`}>
           <img src='../../public/img-sidebar/albums.svg' />
           {auditions}
-        </div>
-        <div className={styles.infoItem}>
-          <img src='../../public/img-sidebar/following.svg' />
         </div>
         <div className={styles.infoItem}>
           <img src='../../public/img-sidebar/like.svg' />
