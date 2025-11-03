@@ -39,6 +39,7 @@ $border: rgb(255, 233, 192);
 
 .card {
     display: flex;
+    justify-content: space-between;
     background-color: #fcfcfc;
     width: 100%;
     transition: transform 0.5s ease;
@@ -92,7 +93,7 @@ $border: rgb(255, 233, 192);
     flex-direction: row;
     align-items: center;
     gap: 30px;
-    margin-left: 900px;
+    margin-right: 10px;
 }
 
 .infoItem {
@@ -108,4 +109,9 @@ $border: rgb(255, 233, 192);
 
 .auditions {
     width: 80px;
+}
+
+.nameContainer {
+    display: flex;
+    flex-direction: row;
 }
