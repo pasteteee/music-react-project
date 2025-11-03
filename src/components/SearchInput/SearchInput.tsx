@@ -31,7 +31,8 @@ export default function SearchInput() {
           {helps.map((el, ind) => {
             return (
               <div
-                style={{ display: "block", width: "100%" }}
+                onClick={() => player?.addTrackToQueue(el)}
+                style={{ display: "block", width: "100%", cursor: "pointer" }}
                 key={`helps${ind}`}
               >{`${el.title} - ${el.artistName}`}</div>
             );

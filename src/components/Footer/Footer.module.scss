@@ -1,31 +1,77 @@
 .footerPlayer {
-    display: flex;
-    align-items: center;
-    width: 100vw;
-    border: 1px solid black;
+  display: flex;
+  align-items: center;
+  width: 100vw;
+  border: 1px solid black;
+  position: relative;
 }
 
 .songWrapper {
-    max-width: 1170px;
-    margin: auto;
-    padding: 10px;
-    width: 100%;
-    display: grid;
-    grid-template-columns: 60px auto 100px;
-    grid-template-areas: "image controls settings";
+  max-width: 1170px;
+  margin: auto;
+  padding: 10px;
+  width: 100%;
+  display: grid;
+  grid-template-columns: 60px auto 100px;
+  grid-template-areas: "image controls settings";
 
-    .songImage {
-        grid-area: image;
-        width: 90%;
-        aspect-ratio: 1/1;
-        background: green;
+  .timeLine {
+    top: 0;
+    left: 0;
+    transform: translate(-2px, -50%);
+    width: 100vw;
+
+    position: absolute;
+  }
+
+  .songImage {
+    grid-area: image;
+    width: 90%;
+    aspect-ratio: 1/1;
+    background: green;
+  }
+
+  .songController {
+    grid-area: controls;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    .meta {
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
     }
 
-    .songController {
-        grid-area: controls;
-    }
+    .controls {
+      display: inline-flex;
+      gap: 8px;
 
-    .songSettings {
-        grid-area: settings;
+      button {
+        width: 36px;
+        height: 36px;
+        border-radius: 50%;
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        border: 1px solid #ddd;
+        cursor: pointer;
+      }
+
+      button:disabled {
+        opacity: 0.5;
+        cursor: not-allowed;
+      }
+
+      div {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+      }
     }
+  }
+
+  .songSettings {
+    grid-area: settings;
+  }
 }

@@ -7,6 +7,14 @@
   width: 100vw;
   grid-template-columns: 310px auto;
   grid-template-rows: 1fr auto;
+
+  &:has(div[data-closed="true"]) {
+    grid-template-rows: 1fr;
+
+    div[data-closed="true"] {
+      display: none;
+    }
+  }
 }
 
 main {

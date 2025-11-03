@@ -19,34 +19,26 @@ interface TQueueEl {
 
 export default class Player {
   queue: TQueueEl | null;
-  _source: string | null;
-  #setState: React.SetStateAction<Player> | undefined;
+  #setState: React.Dispatch<React.SetStateAction<Player>> | undefined;
+  #audio: HTMLAudioElement | null;
 
   constructor() {
     this.queue = null;
     this.#setState = undefined;
-    this._source = localStorage.getItem("source");
+    this.#audio = null;
   }
 
   set setStateFunction(fn: React.Dispatch<React.SetStateAction<Player>>) {
     this.#setState = fn;
   }
 
-  set source(value: string | null) {
-    this._source = value;
-
-    // Переписать, когда будет класс для взаимодействия с localStorage
-    if (value != null) localStorage.setItem("source", value);
-    else localStorage.removeItem("source");
-  }
-
   async findTrack(query: string, count: number) {
     const res = await fetch(
-      `/api/search?q=${encodeURIComponent(query)}&limit=${count}&source=${"spotify"}`
+      `/api/search?q=${encodeURIComponent(query)}&limit=${count}`
     );
 
     if (!res.ok)
-      return undefined;
+      return undefined; 
     
     const data = await res.json();
     return this.getTypedArray(data?.results ?? []);
@@ -72,15 +64,70 @@ export default class Player {
       return;
 
     if (this.queue == null) {
-    this.#setState((prevState) => ({
-      ...prevState,
-      queue: [songData] // Создаем новую очередь с текущим треком
-    }));
-  } else {
-    this.#setState((prevState) => ({
-      ...prevState,
-      queue: [...prevState.queue, songData] // Добавляем трек в существующую очередь
-    }));
+      this.queue = { current: songData, next: null };
+      this.#initAudioAndPlay(songData.url);
+    } else {
+      let tail: TQueueEl = this.queue;
+      while (tail.next !== null) tail = tail.next;
+      tail.next = { current: songData, next: null };
+    }
+
+    const stateFn = this.#setState;
+    const currentQueue = this.queue;
+
+    stateFn((prev) => {
+      const nextPlayer = Object.assign(new Player(), prev);
+      nextPlayer.queue = currentQueue;
+      nextPlayer.setStateFunction = stateFn;
+      return nextPlayer;
+    });
   }
+
+  play() {
+    const url = this.queue?.current?.url;
+    if (!url) return;
+    this.#initAudioIfNeeded(url);
+    this.#audio!.play().catch(() => {});
+  }
+
+  pause() {
+    console.log("stop")
+    if (this.#audio) this.#audio.pause();
+  }
+
+  next() {
+    if (!this.queue || !this.queue.next) return;
+    this.queue = this.queue.next;
+
+    if (this.#setState) {
+      const stateFn = this.#setState;
+      const currentQueue = this.queue;
+
+      stateFn((prev) => {
+        const nextPlayer = Object.assign(new Player(), prev);
+        nextPlayer.queue = currentQueue;
+        nextPlayer.setStateFunction = stateFn;
+        return nextPlayer;
+      });
+    }
+
+    const url = this.queue.current.url;
+    this.#initAudioAndPlay(url);
+  }
+
+  #initAudioIfNeeded(url: string) {
+    if (this.#audio == null) {
+      this.#audio = new Audio(url);
+      return;
+    }
+    if (this.#audio.src !== url) {
+      this.#audio.src = url;
+    }
+  }
+
+  #initAudioAndPlay(url: string) {
+    this.#initAudioIfNeeded(url);
+    this.#audio!.currentTime = 0;
+    this.#audio!.play().catch(() => {});
   }
 }
