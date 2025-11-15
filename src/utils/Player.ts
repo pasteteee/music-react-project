@@ -48,7 +48,6 @@ export default class Player {
     let result: TSong[] = [];
     
     for (let item of data) {
-      console.log(item)
       result.push({
         title: String(item.title),
         url: String(item.previewURL),
@@ -91,7 +90,6 @@ export default class Player {
   }
 
   pause() {
-    console.log("stop")
     if (this.#audio) this.#audio.pause();
   }
 
@@ -116,13 +114,10 @@ export default class Player {
   }
 
   #initAudioIfNeeded(url: string) {
-    if (this.#audio == null) {
+    if (this.#audio == null) 
       this.#audio = new Audio(url);
-      return;
-    }
-    if (this.#audio.src !== url) {
+    else if (this.#audio.src !== url) 
       this.#audio.src = url;
-    }
   }
 
   #initAudioAndPlay(url: string) {
